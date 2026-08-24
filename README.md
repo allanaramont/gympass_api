@@ -1,91 +1,86 @@
-## App
+<div align="center">
 
-GymPass API in Node.js + TypeScript that applies SOLID concepts and has unit and E2E tests.
+# 🏋️ GymPass API
 
-## Functional Requirements
+**Node.js + TypeScript API applying SOLID, with full unit and E2E test coverage**
 
-- [x] It must be possible to register;
-- [x] It must be possible to authenticate;
-- [x] It must be possible to get the profile of a logged in user;
-- [x] It must be possible to obtain the number of check-ins performed by the logged in user;
-- [x] It must be possible for the user to obtain their check-in history.
-- [x] It should be possible for the user to search for nearby gyms up to 10km away;
-- [x] It should be possible for the user to search for gyms by name;
-- [x] User must be able to check into a gym.
-- [x] It must be possible to validate a user's check-in;
-- [x] It must be possible to register a gym;
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Fastify](https://img.shields.io/badge/Fastify-000000?style=for-the-badge&logo=fastify&logoColor=white)](https://www.fastify.io)
+[![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org)
+[![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev)
+[![License: MIT](https://img.shields.io/badge/license-MIT-000000?style=for-the-badge)](./LICENSE)
 
-## Business Rules
+</div>
 
-- [x] The user must not be able to register with a duplicate email;
-- [x] The user cannot make 2 check-ins on the same day;
-- [x] User cannot check-in if they are not near (100m) the gym;
-- [x] Check-in can only be validated up to 20 minutes after creation;
-- [x] The check-in can only be validated by administrators;
-- [x] The academy can only be registered by administrators;
+## 📖 About
 
-## Non-functional Requirements
+A GymPass-style API: users sign up, find nearby gyms, and check in when they arrive. Built to practice and demonstrate **SOLID** principles, the **repository pattern** (Prisma + in-memory implementations), and a test-first workflow — every use case has unit tests, and the HTTP layer is covered end-to-end.
 
-- [x] User password must be encrypted;
-- [x] The application data must be persisted in a PostgresSQL database;
-- [x] All data lists need to be paginated with 20 items per page;
-- [x] The user must be identified by a JWT (Json Web Token);
+## ✨ Features
 
-## Setup
+- User registration and authentication (JWT)
+- Logged-in user profile
+- Check-in count and check-in history per user
+- Search gyms within 10km, and by name
+- Gym check-in, with validation window and admin approval
+- Gym registration (admin only)
 
-Run the PostgreSQL container:
+## 📐 Business Rules
 
-```sh
-$ docker-compose up -d
+- A user can't register with a duplicate email
+- A user can't check in twice on the same day
+- Check-in only allowed within 100m of the gym
+- A check-in can only be validated up to 20 minutes after creation
+- Only admins can validate a check-in or register a gym
+
+## 🛠 Tech Stack
+
+Node.js · TypeScript · Fastify · Prisma · PostgreSQL · Zod · JWT · bcryptjs · Vitest (unit + E2E) · Docker
+
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/allanaramont/gympass_api.git
+cd gympass_api
+npm i
 ```
 
-Create an `.env` file:
+Start PostgreSQL:
 
-```sh
-$ cp .env.example .env
+```bash
+docker-compose up -d
 ```
 
-Edit this file and set the values for the requested environment variables, example:
+Create the `.env` file and fill in the variables (JWT secret, database URL):
 
-```ts
-# Node
-NODE_ENV="development"
-
-#Auth
-JWT_SECRET="your-secret"
-
-# Database
-DATABASE_URL="postgresql://docker:docker@localhost:5432/solidapi?schema=public"
+```bash
+cp .env.example .env
 ```
 
-## Run app
+Run the app:
 
-```sh
-$ npm run dev
+```bash
+npm run dev
 ```
 
-## Build app
+## 🧪 Tests
 
-```sh
-$ npm run build
+```bash
+npm run test           # unit tests
+npm run test:e2e       # end-to-end tests
+npm run test:coverage  # coverage report
 ```
 
-## Run tests
+## 📄 License
 
-Run unit tests
+Distributed under the [MIT License](./LICENSE).
 
-```sh
-$ npm run test
-```
+---
 
-Run E2E tests
+<div align="center">
 
-```sh
-$ npm run test:e2e
-```
+Built by <a href="https://github.com/allanaramont">Allan Monteiro</a>
 
-Generate coverage
-
-```sh
-$ npm run test:coverage
-```
+</div>
